@@ -1,0 +1,14 @@
+# OS junk
+.DS_Store
+Thumbs.db
+.AppleDouble
+.LSOverride
+
+# Files that might be created by macOS
+Icon?
+._*
+
+# Development
+.gemini/
+.vscode/
+node_modules/
