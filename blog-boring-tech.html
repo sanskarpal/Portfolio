@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Sanskar Pal — The Beauty of Boring Tech</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+    content="Why sometimes the best technology choice is the one that has been around for over a decade." />
+  <link rel="stylesheet" href="portfolio.css?v=3" />
+</head>
+
+<body data-screen-label="Blog Post">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="shell nav-inner">
+      <div class="nav-mark">
+        <span><a href="index.html" style="text-decoration: none; color: inherit;">SP / 2026</a></span>
+        <span class="status-pill"><span class="ping"></span><span>open to work</span></span>
+      </div>
+      <div class="nav-links">
+        <a href="index.html#about" class="nav-link">about<span class="dot"></span></a>
+        <a href="index.html#experience" class="nav-link nl-hide">experience<span class="dot"></span></a>
+        <a href="blogs.html" class="nav-link" style="color: var(--accent);">blogs<span class="dot"
+            style="transform: translateX(-50%) scale(1);"></span></a>
+        <a href="index.html#contact" class="nav-link">contact<span class="dot"></span></a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+          <svg class="tt-icon" width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor"
+            stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path class="tt-sun-path"
+              d="M7.5 4.4a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2zM7.5 1v1.6M7.5 12.4V14M1 7.5h1.6M12.4 7.5H14M3 3l1.1 1.1M10.9 10.9 12 12M3 12l1.1-1.1M10.9 4.1 12 3" />
+            <path class="tt-moon-path" d="M12.5 9.2A5 5 0 1 1 5.8 2.5a4.5 4.5 0 0 0 6.7 6.7z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="shell section"
+    style="padding-bottom: 20px; text-align: center; display: flex; flex-direction: column; align-items: center;">
+    <div class="hero-eyebrow" style="margin-bottom: 24px; justify-content: center; width: 100%;">Mar 2026 · Thoughts
+    </div>
+    <h1 class="hero-title" style="font-size: clamp(40px, 6vw, 80px); line-height: 1.1; max-width: 100%;">The Beauty of
+      <span class="em">Boring Tech</span>.
+    </h1>
+  </header>
+
+  <!-- BLOG CONTENT -->
+  <section class="shell section" style="padding-top: 30px; min-height: 50vh;">
+    <div class="about-prose" style="max-width: 720px; margin: 0 auto;">
+      <p>We work in an industry obsessed with the new. New frameworks, new paradigms, new languages. It's incredibly
+        exciting, but when you are trying to ship a real product to real users, this excitement can quickly become a
+        liability.</p>
+
+      <p>I've recently found myself gravitating towards <span class="accent">boring technology</span>. Postgres. Redis.
+        Plain CSS. Vanilla JavaScript.</p>
+
+      <h2 style="font-family: var(--display); font-size: 32px; font-weight: 400; margin: 48px 0 24px;">Predictability
+        over Hype</h2>
+      <p>Boring tech doesn't mean bad tech. It means predictable tech. It means that when something breaks at 2 AM, the
+        solution is already thoroughly documented on Stack Overflow by someone who encountered the exact same issue five
+        years ago.</p>
+
+      <p>When you choose a new, shiny tool, you're not just adopting its features; you're adopting its unknown bugs, its
+        lack of an ecosystem, and its potential to be abandoned by its maintainers in a year.</p>
+
+      <h2 style="font-family: var(--display); font-size: 32px; font-weight: 400; margin: 48px 0 24px;">Focus on the
+        Product</h2>
+      <p>The user doesn't care if your backend is written in Rust or if you're using the latest edge-compute serverless
+        functions. They care if the app is fast, if it works, and if it solves their problem.</p>
+      <p>By using boring tech, you spend less time fighting your tools and more time building features that actually
+        matter.</p>
+    </div>
+
+    <div style="margin: 60px auto 0; max-width: 720px;">
+      <a href="blogs.html" class="nav-link"
+        style="display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line-strong); padding: 8px 16px; border-radius: 999px; font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;">
+        ← Back to blogs
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOT -->
+  <footer class="shell foot">
+    <span>© 2026 — Sanskar Pal</span>
+    <span class="ftime" id="local-time">--:-- local</span>
+    <span>built with care, deployed with ❤️</span>
+  </footer>
+
+  <script>
+    // Local time
+    (function () {
+      const el = document.getElementById('local-time');
+      if (!el) return;
+      function tick() {
+        const d = new Date();
+        const hh = String(d.getHours()).padStart(2, '0');
+        const mm = String(d.getMinutes()).padStart(2, '0');
+        const ss = String(d.getSeconds()).padStart(2, '0');
+        el.textContent = `${hh}:${mm}:${ss} local`;
+      }
+      tick();
+      setInterval(tick, 1000);
+    })();
+
+    // Theme toggle
+    (function () {
+      const root = document.documentElement;
+      const btn = document.getElementById('themeToggle');
+      const stored = localStorage.getItem('sp-theme');
+      if (stored) root.setAttribute('data-theme', stored);
+      if (btn) {
+        btn.addEventListener('click', () => {
+          const cur = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+          const next = cur === 'dark' ? 'light' : 'dark';
+          root.setAttribute('data-theme', next);
+          localStorage.setItem('sp-theme', next);
+        });
+      }
+    })();
+  </script>
+
+</body>
+
+</html>

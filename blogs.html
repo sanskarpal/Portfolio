@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Sanskar Pal — Blogs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Sanskar Pal's blog posts and writing." />
+  <link rel="stylesheet" href="portfolio.css?v=3" />
+</head>
+
+<body data-screen-label="Blogs">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="shell nav-inner">
+      <div class="nav-mark">
+        <span><a href="index.html" style="text-decoration: none; color: inherit;">SP / 2026</a></span>
+        <span class="status-pill"><span class="ping"></span><span>open to work</span></span>
+      </div>
+      <div class="nav-links">
+        <a href="index.html#about" class="nav-link">about<span class="dot"></span></a>
+        <a href="index.html#experience" class="nav-link nl-hide">experience<span class="dot"></span></a>
+        <a href="blogs.html" class="nav-link" style="color: var(--accent);">blogs<span class="dot" style="transform: translateX(-50%) scale(1);"></span></a>
+        <a href="index.html#contact" class="nav-link">contact<span class="dot"></span></a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+          <svg class="tt-icon" width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor"
+            stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path class="tt-sun-path"
+              d="M7.5 4.4a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2zM7.5 1v1.6M7.5 12.4V14M1 7.5h1.6M12.4 7.5H14M3 3l1.1 1.1M10.9 10.9 12 12M3 12l1.1-1.1M10.9 4.1 12 3" />
+            <path class="tt-moon-path" d="M12.5 9.2A5 5 0 1 1 5.8 2.5a4.5 4.5 0 0 0 6.7 6.7z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="shell section" style="padding-bottom: 0; text-align: center; display: flex; flex-direction: column; align-items: center;">
+    <h1 class="section-title" style="margin-bottom: 24px; max-width: 100%;">Writing & <span class="em">Thinking</span>.</h1>
+    <p class="about-prose" style="max-width: 600px; margin-bottom: 60px;">A collection of my thoughts, learnings, and occasional rants about software engineering and life.</p>
+  </header>
+
+  <!-- BLOG LIST -->
+  <section class="shell section" style="padding-top: 0; min-height: 50vh;">
+    <div class="timeline">
+      
+      <!-- Dummy Blog Post -->
+      <a href="blog-portfolio.html" class="tl-row reveal" style="display: grid; text-decoration: none;">
+        <div class="tl-year">May 2026</div>
+        <div class="tl-main">
+          <div class="tl-role">How I Built My <span class="em">Portfolio</span></div>
+          <div class="tl-place">A deep dive into the design decisions, CSS tricks, and the minimalist approach to building a personal site.</div>
+        </div>
+        <div class="tl-tag">Tech</div>
+      </a>
+
+      <!-- Dummy Blog Post -->
+      <a href="blog-debugging.html" class="tl-row reveal" style="display: grid; text-decoration: none;">
+        <div class="tl-year">April 2026</div>
+        <div class="tl-main">
+          <div class="tl-role">Debugging Like A <span class="em">Detective</span></div>
+          <div class="tl-place">Why finding bugs is essentially playing detective, and how to track down elusive issues systematically.</div>
+        </div>
+        <div class="tl-tag">Engineering</div>
+      </a>
+
+      <!-- Dummy Blog Post -->
+      <a href="blog-boring-tech.html" class="tl-row reveal" style="display: grid; text-decoration: none;">
+        <div class="tl-year">Mar 2026</div>
+        <div class="tl-main">
+          <div class="tl-role">The Beauty of <span class="em">Boring Tech</span></div>
+          <div class="tl-place">Why sometimes the best technology choice is the one that has been around for over a decade.</div>
+        </div>
+        <div class="tl-tag">Thoughts</div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- FOOT -->
+  <footer class="shell foot">
+    <span>© 2026 — Sanskar Pal</span>
+    <span class="ftime" id="local-time">--:-- local</span>
+    <span>built with care, deployed with ❤️</span>
+  </footer>
+
+  <script>
+    // Reveal on scroll
+    (function () {
+      const els = document.querySelectorAll('.reveal');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      els.forEach(el => io.observe(el));
+    })();
+
+    // Local time
+    (function () {
+      const el = document.getElementById('local-time');
+      if (!el) return;
+      function tick() {
+        const d = new Date();
+        const hh = String(d.getHours()).padStart(2, '0');
+        const mm = String(d.getMinutes()).padStart(2, '0');
+        const ss = String(d.getSeconds()).padStart(2, '0');
+        el.textContent = `${hh}:${mm}:${ss} local`;
+      }
+      tick();
+      setInterval(tick, 1000);
+    })();
+
+    // Theme toggle
+    (function () {
+      const root = document.documentElement;
+      const btn = document.getElementById('themeToggle');
+      const stored = localStorage.getItem('sp-theme');
+      if (stored) root.setAttribute('data-theme', stored);
+      if (btn) {
+        btn.addEventListener('click', () => {
+          const cur = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+          const next = cur === 'dark' ? 'light' : 'dark';
+          root.setAttribute('data-theme', next);
+          localStorage.setItem('sp-theme', next);
+        });
+      }
+    })();
+  </script>
+
+</body>
+</html>
